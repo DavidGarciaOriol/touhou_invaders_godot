@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3ie3p51m3wpp"]
+
+[ext_resource type="Script" path="res://scripts/Reimu.gd" id="1_klbcx"]
+[ext_resource type="Texture2D" uid="uid://cqwbatbp7js50" path="res://sprites/player/reimu_sprite.png" id="2_o7tsc"]
+[ext_resource type="Texture2D" uid="uid://e07syttkpeuv" path="res://sprites/shield/shield_6.png" id="3_w3fud"]
+[ext_resource type="Texture2D" uid="uid://bqqdlnqlghxfv" path="res://sprites/shield/shield_5.png" id="4_7nuan"]
+[ext_resource type="Texture2D" uid="uid://ohkx0rt2mix4" path="res://sprites/shield/shield_4.png" id="5_pcdv0"]
+[ext_resource type="Texture2D" uid="uid://c27sl6rbca87t" path="res://sprites/shield/shield_3.png" id="6_4db0g"]
+[ext_resource type="Texture2D" uid="uid://ckwufbwicno6c" path="res://sprites/shield/shield_2.png" id="7_luhr2"]
+[ext_resource type="Texture2D" uid="uid://bbni2ialipjo" path="res://sprites/shield/shield_1.png" id="8_yeexw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqirw"]
+radius = 11.0
+height = 26.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vqn11"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w3fud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7nuan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pcdv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4db0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_luhr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yeexw")
+}],
+"loop": false,
+"name": &"regenerar_escudo",
+"speed": 0.5
+}]
+
+[node name="Reimu" type="CharacterBody2D" groups=["Reimu"]]
+motion_mode = 1
+script = ExtResource("1_klbcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o7tsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_yqirw")
+
+[node name="AparicionProyectil" type="Marker2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="EscudoCooldownLabel" type="RichTextLabel" parent="."]
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 42.0
+text = "0.0"
+
+[node name="EscudoRegenerandoseAnimacion" type="AnimatedSprite2D" parent="."]
+position = Vector2(-21, 13)
+scale = Vector2(0.66, 0.66)
+sprite_frames = SubResource("SpriteFrames_vqn11")
+animation = &"regenerar_escudo"

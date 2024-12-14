@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://6cv6uljtah4s"]
+
+[ext_resource type="Texture2D" uid="uid://bjwn36iw02j3i" path="res://sprites/player/reimu_projectile.png" id="1_3w5hs"]
+[ext_resource type="Script" path="res://scripts/proyectil_reimu.gd" id="1_o3vee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c80sx"]
+size = Vector2(16, 28)
+
+[node name="Proyectil_Reimu" type="Area2D" groups=["Proyectiles"]]
+position = Vector2(0, -9)
+scale = Vector2(0.66, 0.66)
+script = ExtResource("1_o3vee")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3w5hs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c80sx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://bwfya14yj2jsa"]
+
+[ext_resource type="Script" path="res://scripts/Remilia.gd" id="1_bfw8h"]
+[ext_resource type="Texture2D" uid="uid://xabjt4eflu22" path="res://sprites/enemy/remilia_sprite.png" id="1_wrftl"]
+[ext_resource type="Texture2D" uid="uid://btdedqcihcxt6" path="res://sprites/enemy/proyectile_launch/remilia_sprite_projectile_launch_1.png" id="3_vs371"]
+[ext_resource type="Texture2D" uid="uid://c3cragrqrq0g8" path="res://sprites/enemy/proyectile_launch/remilia_sprite_projectile_launch_2.png" id="4_gmant"]
+[ext_resource type="Texture2D" uid="uid://crr40tokmydrp" path="res://sprites/enemy/proyectile_launch/remilia_sprite_projectile_launch_3.png" id="5_vuop5"]
+[ext_resource type="Texture2D" uid="uid://bpkod7mvldhd0" path="res://sprites/enemy/proyectile_launch/remilia_sprite_projectile_launch_4.png" id="6_jpuu7"]
+[ext_resource type="Texture2D" uid="uid://b102wqc6bokcg" path="res://sprites/enemy/proyectile_launch/remilia_sprite_projectile_launch_5.png" id="7_1y44n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjx0b"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="Animation" id="Animation_y35as"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_acx48"]
+resource_name = "projectile_launch"
+
+[sub_resource type="Animation" id="Animation_13v72"]
+resource_name = "vivo"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmgf1"]
+_data = {
+"RESET": SubResource("Animation_y35as"),
+"projectile_launch": SubResource("Animation_acx48"),
+"vivo": SubResource("Animation_13v72")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm1hm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vs371")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gmant")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vuop5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jpuu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1y44n")
+}],
+"loop": false,
+"name": &"atacar",
+"speed": 8.0
+}]
+
+[node name="Remilia" type="CharacterBody2D" groups=["Remilia"]]
+script = ExtResource("1_bfw8h")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wrftl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_fjx0b")
+
+[node name="TimerMovimiento" type="Timer" parent="."]
+wait_time = 0.017
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dmgf1")
+}
+
+[node name="DisparoAnimacion" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_sm1hm")
+animation = &"atacar"
+frame = 4
+frame_progress = 1.0
+
+[node name="TimerDisparo" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="PosicionAparicionProyectil" type="Marker2D" parent="."]
+position = Vector2(-8, 20)
+
+[connection signal="timeout" from="TimerMovimiento" to="." method="_on_timer_movimiento_timeout"]
+[connection signal="animation_finished" from="DisparoAnimacion" to="." method="_on_disparo_animacion_animation_finished"]
+[connection signal="timeout" from="TimerDisparo" to="." method="_on_timer_disparo_timeout"]

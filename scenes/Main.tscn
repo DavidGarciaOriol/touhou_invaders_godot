@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5hu6v6ra7ed3"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_6ufdn"]
+[ext_resource type="PackedScene" uid="uid://b3ie3p51m3wpp" path="res://scenes/Reimu.tscn" id="1_g0pst"]
+[ext_resource type="Texture2D" uid="uid://dig8gs1l2505s" path="res://backgrounds/frame_00_delay-0.1s.png" id="2_4g3o6"]
+[ext_resource type="PackedScene" uid="uid://cjahvgt8t3mg4" path="res://scenes/Grupo_remilias.tscn" id="2_gqyi7"]
+[ext_resource type="Texture2D" uid="uid://b77nwe74aq7fl" path="res://sprites/icons/reimu_lifes_1.png" id="5_fhlxh"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_6ufdn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.646029, 0.646029, 0.646029, 1)
+offset_right = 600.0
+offset_bottom = 800.0
+texture = ExtResource("2_4g3o6")
+
+[node name="Reimu" parent="." instance=ExtResource("1_g0pst")]
+position = Vector2(290, 729)
+
+[node name="GrupoRemilias" parent="." instance=ExtResource("2_gqyi7")]
+
+[node name="IconoVitalidadReimu" type="Sprite2D" parent="."]
+position = Vector2(544, 50)
+scale = Vector2(1.66, 1.66)
+texture = ExtResource("5_fhlxh")
+
+[node name="VitalidadReimu" type="RichTextLabel" parent="."]
+offset_left = 560.0
+offset_top = 37.0
+offset_right = 582.0
+offset_bottom = 61.0
+text = "10"

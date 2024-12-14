@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://sgnwhoirkvpp"]
+
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_fm5nk"]
+[ext_resource type="Texture2D" uid="uid://dig8gs1l2505s" path="res://backgrounds/frame_00_delay-0.1s.png" id="2_1bndv"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fm5nk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 800.0
+texture = ExtResource("2_1bndv")
+
+[node name="GameOverBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 800.0
+color = Color(0.462745, 0.203922, 0.305882, 0.513726)
+
+[node name="GameOverText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 370.0
+offset_right = 200.0
+offset_bottom = 402.0
+scale = Vector2(4, 4)
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reiniciar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 200.0
+offset_right = 300.0
+offset_bottom = 240.0
+scale = Vector2(2, 2)
+text = "REINICIAR"
+
+[node name="Salir" type="Button" parent="."]
+offset_left = 220.0
+offset_top = 600.0
+offset_right = 300.0
+offset_bottom = 640.0
+scale = Vector2(2, 2)
+text = "SALIR"
+
+[connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
+[connection signal="pressed" from="Salir" to="." method="_on_salir_pressed"]

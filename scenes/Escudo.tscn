@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqkvpi7qdq2cs"]
+
+[ext_resource type="Texture2D" uid="uid://bbni2ialipjo" path="res://sprites/shield/shield_1.png" id="1_rfonc"]
+[ext_resource type="Script" path="res://scripts/escudo.gd" id="1_ryrfl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1rex0"]
+radius = 17.0
+
+[node name="Escudo" type="Area2D"]
+position = Vector2(0, -17)
+scale = Vector2(2, 2)
+script = ExtResource("1_ryrfl")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rfonc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1rex0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

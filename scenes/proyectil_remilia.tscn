@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://du8drie3afo60"]
+
+[ext_resource type="Script" path="res://scripts/Proyectil_remilia.gd" id="1_mt7u5"]
+[ext_resource type="Texture2D" uid="uid://dd63fh8e3f4kt" path="res://sprites/enemy/remilia_projectile.png" id="1_uu1hy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgurt"]
+size = Vector2(20, 60)
+
+[node name="Proyectil_remilia" type="Area2D" groups=["Proyectiles"]]
+script = ExtResource("1_mt7u5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 30)
+texture = ExtResource("1_uu1hy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30)
+shape = SubResource("RectangleShape2D_mgurt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://sgnwhoirkvpp"]
+[gd_scene load_steps=3 format=3 uid="uid://crtbcnwc7c8qp"]
 
-[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_fm5nk"]
-[ext_resource type="Texture2D" uid="uid://dig8gs1l2505s" path="res://backgrounds/frame_00_delay-0.1s.png" id="2_1bndv"]
+[ext_resource type="Script" path="res://scripts/victoria.gd" id="1_6xcbb"]
+[ext_resource type="Texture2D" uid="uid://dig8gs1l2505s" path="res://backgrounds/frame_00_delay-0.1s.png" id="2_ncqsb"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_fm5nk")
+script = ExtResource("1_6xcbb")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 600.0
 offset_bottom = 800.0
-texture = ExtResource("2_1bndv")
+texture = ExtResource("2_ncqsb")
 
 [node name="GameOverBackground" type="ColorRect" parent="."]
 layout_mode = 0
@@ -29,7 +29,7 @@ offset_top = 370.0
 offset_right = 200.0
 offset_bottom = 402.0
 scale = Vector2(4, 4)
-text = "GAME OVER"
+text = "¡VICTORIA!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

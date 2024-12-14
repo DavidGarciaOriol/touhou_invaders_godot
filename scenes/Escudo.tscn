@@ -8,7 +8,7 @@ radius = 17.0
 
 [node name="Escudo" type="Area2D"]
 position = Vector2(0, -17)
-scale = Vector2(2, 2)
+scale = Vector2(2.66, 2.66)
 script = ExtResource("1_ryrfl")
 metadata/_edit_group_ = true
 

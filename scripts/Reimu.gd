@@ -78,6 +78,10 @@ func escudo_cooldown():
 	# Temporizador para actualizar el tiempo restante dinámicamente
 	while tiempo_restante_cooldown > 0:
 		await get_tree().process_frame
+		
+		if not is_inside_tree():
+			return
+		
 		tiempo_restante_cooldown -= get_process_delta_time()
 		actualizar_cooldown_label()
 	
@@ -104,7 +108,7 @@ func recibir_dmg():
 		morir()
 
 func morir():
-	queue_free()
+	call_deferred("queue_free")
 	emit_signal("reimu_muerta")
 
 

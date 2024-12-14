@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 3
+const SPEED = 2
 
 # Temporizador para el movimiento lateral enemigo
 var timer_movimiento
@@ -13,7 +13,7 @@ var en_animacion_disparo = false
 # Punto de origen de desplazamiento
 var origen = 0
 # Rango de movimiento
-var rango_movimiento = 100
+var rango_movimiento = 60
 # Dirección del movimiento
 var direccion = 1
 
@@ -31,10 +31,6 @@ func _ready() -> void:
 	timer_movimiento = $TimerMovimiento
 	timer_movimiento.start()
 	origen = self.position.x
-	
-	# Inicia el timer de disparo
-	timer_disparo = $TimerDisparo
-	timer_disparo.start()
 	
 	# Sprite 2D
 	sprite = $Sprite2D
@@ -56,9 +52,6 @@ func atacar():
 	var disparo_animacion = $DisparoAnimacion
 	disparo_animacion.visible = true
 	disparo_animacion.play("atacar")
-	
-	# Detener el timer
-	timer_disparo.stop()
 
 # Dispara el proyectil
 func disparar_proyectil():
@@ -87,12 +80,6 @@ func _on_disparo_animacion_animation_finished() -> void:
 	# Ocultar animación disparo
 	$DisparoAnimacion.visible = false
 	
-	# Mostrar animación base
+	# Mostrar animación base y ocultar la de disparo
 	sprite.visible = true
-	
-	# Reiniciar el timer
-	timer_disparo.start()
 	en_animacion_disparo = false
-
-func _on_timer_disparo_timeout() -> void:
-	atacar()

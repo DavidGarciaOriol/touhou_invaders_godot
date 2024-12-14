@@ -1,7 +1,7 @@
 extends Area2D
 
 #Velocidad de proyectil.
-const VELOCIDAD = 500
+const VELOCIDAD = 350
 
 func _ready() -> void:
 	pass

@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5hu6v6ra7ed3"]
+[gd_scene load_steps=7 format=3 uid="uid://b5hu6v6ra7ed3"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_6ufdn"]
 [ext_resource type="PackedScene" uid="uid://b3ie3p51m3wpp" path="res://scenes/Reimu.tscn" id="1_g0pst"]
 [ext_resource type="Texture2D" uid="uid://dig8gs1l2505s" path="res://backgrounds/frame_00_delay-0.1s.png" id="2_4g3o6"]
 [ext_resource type="PackedScene" uid="uid://cjahvgt8t3mg4" path="res://scenes/Grupo_remilias.tscn" id="2_gqyi7"]
 [ext_resource type="Texture2D" uid="uid://b77nwe74aq7fl" path="res://sprites/icons/reimu_lifes_1.png" id="5_fhlxh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh6sa"]
+size = Vector2(602, 32)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6ufdn")
@@ -31,3 +34,18 @@ offset_top = 37.0
 offset_right = 582.0
 offset_bottom = 61.0
 text = "10"
+
+[node name="AreaGameOver" type="Area2D" parent="."]
+position = Vector2(0, 677)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGameOver"]
+position = Vector2(300, 16)
+shape = SubResource("RectangleShape2D_eh6sa")
+
+[node name="ColorRect" type="ColorRect" parent="AreaGameOver"]
+offset_right = 600.0
+offset_bottom = 5.0
+color = Color(0.980392, 0, 0.415686, 0.643137)
+
+[connection signal="body_entered" from="AreaGameOver" to="." method="_on_area_game_over_body_entered"]

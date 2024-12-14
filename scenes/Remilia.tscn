@@ -101,12 +101,8 @@ animation = &"atacar"
 frame = 4
 frame_progress = 1.0
 
-[node name="TimerDisparo" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="PosicionAparicionProyectil" type="Marker2D" parent="."]
-position = Vector2(-8, 20)
+position = Vector2(-8, 17)
 
 [connection signal="timeout" from="TimerMovimiento" to="." method="_on_timer_movimiento_timeout"]
 [connection signal="animation_finished" from="DisparoAnimacion" to="." method="_on_disparo_animacion_animation_finished"]
-[connection signal="timeout" from="TimerDisparo" to="." method="_on_timer_disparo_timeout"]

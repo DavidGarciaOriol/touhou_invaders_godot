@@ -6,6 +6,7 @@
 script = ExtResource("1_4magc")
 
 [node name="TimerDescender" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
 
 [node name="TimerDisparo" type="Timer" parent="."]

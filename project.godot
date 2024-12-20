@@ -17,8 +17,13 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=800
+window/size/viewport_width=780
+window/size/viewport_height=1040
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/stretch/scale=1.3
+window/handheld/orientation=1
 
 [global_group]
 

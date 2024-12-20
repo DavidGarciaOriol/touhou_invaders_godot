@@ -3,7 +3,7 @@ extends CharacterBody2D
 const VELOCIDAD = 400.0
 
 # Vitalidad
-var vitalidad: int = 10
+var vitalidad: int = 3
 
 # Proyectil
 var proyectil = preload("res://scenes/Proyectil_reimu.tscn")
@@ -22,6 +22,9 @@ var escudo_cooldown_label: RichTextLabel
 # Animación escudo
 var animacion_escudo_regenerandose: AnimatedSprite2D
 
+# Sprite Hitbox
+var sprite_hitbox: Sprite2D
+
 # Señal muerto
 signal reimu_muerta
 
@@ -30,11 +33,14 @@ signal recibe_dmg
 
 func _ready():
 	posicion_aparicion_proyectil = $AparicionProyectil
+	
 	escudo_cooldown_label = $EscudoCooldownLabel
 	animacion_escudo_regenerandose = $EscudoRegenerandoseAnimacion
 	animacion_escudo_regenerandose.visible = false
-	
 	escudo_cooldown_label.visible = false
+	
+	sprite_hitbox = $HitboxSprite
+	sprite_hitbox.self_modulate.a = 0.5
 
 # Recibe los controles de movimiento.
 func recibir_input():
@@ -42,8 +48,10 @@ func recibir_input():
 	
 	if Input.is_action_pressed("Focus"):
 		velocity = direccion * VELOCIDAD / 2.5
+		sprite_hitbox.self_modulate.a = 1
 	else:
 		velocity = direccion * VELOCIDAD
+		sprite_hitbox.self_modulate.a = 0.5
 
 func disparar():
 	if Input.is_action_just_pressed("Disparo"):
@@ -116,5 +124,10 @@ func morir():
 func _physics_process(delta: float) -> void:
 	recibir_input()
 	move_and_slide()
+	# Limita la posición del jugador dentro de los límites de la pantalla
+	var ventana = get_viewport_rect()  # Obtiene el tamaño de la pantalla
+	position.x = clamp(position.x, 0, ventana.size.x)  # Limita en el eje X
+	position.y = clamp(position.y, 0, ventana.size.y)  # Limita en el eje Y
+	
 	disparar()
 	generar_escudo()

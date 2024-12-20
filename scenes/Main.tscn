@@ -33,7 +33,6 @@ offset_left = 560.0
 offset_top = 37.0
 offset_right = 582.0
 offset_bottom = 61.0
-text = "10"
 
 [node name="AreaGameOver" type="Area2D" parent="."]
 position = Vector2(0, 677)

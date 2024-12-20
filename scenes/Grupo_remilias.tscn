@@ -5,13 +5,8 @@
 [node name="GrupoRemilias" type="Node2D"]
 script = ExtResource("1_4magc")
 
-[node name="TimerDescender" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
 [node name="TimerDisparo" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
-[connection signal="timeout" from="TimerDescender" to="." method="_on_timer_descender_timeout"]
 [connection signal="timeout" from="TimerDisparo" to="." method="_on_timer_disparo_timeout"]

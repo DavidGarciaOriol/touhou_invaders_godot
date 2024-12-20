@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3ie3p51m3wpp"]
+[gd_scene load_steps=12 format=3 uid="uid://b3ie3p51m3wpp"]
 
 [ext_resource type="Script" path="res://scripts/Reimu.gd" id="1_klbcx"]
 [ext_resource type="Texture2D" uid="uid://cqwbatbp7js50" path="res://sprites/player/reimu_sprite.png" id="2_o7tsc"]
@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://c27sl6rbca87t" path="res://sprites/shield/shield_3.png" id="6_4db0g"]
 [ext_resource type="Texture2D" uid="uid://ckwufbwicno6c" path="res://sprites/shield/shield_2.png" id="7_luhr2"]
 [ext_resource type="Texture2D" uid="uid://bbni2ialipjo" path="res://sprites/shield/shield_1.png" id="8_yeexw"]
+[ext_resource type="Texture2D" uid="uid://dxjqfdgjf1g2a" path="res://sprites/player/reimu_hitbox.png" id="9_35568"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqirw"]
-radius = 11.0
-height = 26.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_jj0hd"]
+radius = 4.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqn11"]
 animations = [{
@@ -42,13 +42,14 @@ animations = [{
 [node name="Reimu" type="CharacterBody2D" groups=["Reimu"]]
 motion_mode = 1
 script = ExtResource("1_klbcx")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_o7tsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_yqirw")
+position = Vector2(-1, 3)
+shape = SubResource("CircleShape2D_jj0hd")
 
 [node name="AparicionProyectil" type="Marker2D" parent="."]
 position = Vector2(0, -10)
@@ -65,3 +66,8 @@ position = Vector2(-21, 13)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_vqn11")
 animation = &"regenerar_escudo"
+
+[node name="HitboxSprite" type="Sprite2D" parent="."]
+position = Vector2(-1, 3)
+scale = Vector2(0.602941, 0.602941)
+texture = ExtResource("9_35568")

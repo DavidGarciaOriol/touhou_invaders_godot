@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 2
+# const SPEED = 2 (DEPRECATED)
+
+# Vitalidad Remilia
+var vitalidad: int = 2
 
 # Temporizador para el movimiento lateral enemigo
 var timer_movimiento
+
 # Temporizador para los disparos enemigos
 var timer_disparo
 
@@ -12,13 +16,15 @@ var en_animacion_disparo = false
 
 # Punto de origen de desplazamiento
 var origen = 0
-# Rango de movimiento
-var rango_movimiento = 60
-# Dirección del movimiento
-var direccion = 1
 
-# Sprite
+# Rango de movimiento
+# var rango_movimiento = 60 (DEPRECATED)
+# Dirección del movimiento (DEPRECATED)
+# var direccion = 1
+
+# Sprite y animación
 var sprite
+var sprite_animacion
 
 # Proyectil
 var proyectil = preload("res://scenes/proyectil_remilia.tscn")
@@ -34,6 +40,7 @@ func _ready() -> void:
 	
 	# Sprite 2D
 	sprite = $Sprite2D
+	sprite_animacion = $DisparoAnimacion
 	
 	# Proyectil
 	posicion_aparicion_proyectil = $PosicionAparicionProyectil
@@ -59,17 +66,26 @@ func disparar_proyectil():
 	remilia_proyectil.global_position = posicion_aparicion_proyectil.global_position
 	get_parent().add_child(remilia_proyectil)
 
+# Recibir daño
+func recibir_dmg():
+	if vitalidad > 0:
+		vitalidad -= 1
+		sprite.self_modulate = Color(0.6, 0.35, 0.3, 1)
+		sprite_animacion.self_modulate = Color(0.6, 0.35, 0.3, 1)
+	elif vitalidad <= 0:
+		morir()
+
 # Cuando el enemigo muere
 func morir():
 	emit_signal("remilia_eliminada", self)
 	call_deferred("queue_free")
 
-# Cuando el timer de movimiento completa un ciclo
-func _on_timer_movimiento_timeout() -> void:
-	self.position.x += SPEED * direccion
-
-	if self.position.x >= rango_movimiento + origen or self.position.x < origen - rango_movimiento:
-		self.direccion *= -1
+# Cuando el timer de movimiento completa un ciclo (DEPRECATED)
+#func _on_timer_movimiento_timeout() -> void:
+	#self.position.x += SPEED * direccion
+#
+	#if self.position.x >= rango_movimiento + origen or self.position.x < origen - rango_movimiento:
+		#self.direccion *= -1
 
 # Cuando la animación termina
 func _on_disparo_animacion_animation_finished() -> void:

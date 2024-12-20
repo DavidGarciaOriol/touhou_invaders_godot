@@ -10,14 +10,17 @@ var reimu
 var grupo_remilias
 
 # Vitalidad
-var vitalidad_reimu: int = 10
+var vitalidad_reimu: int = 0
 var vitalidad_reimu_txt: RichTextLabel
 
 func _ready() -> void:
 	
 	# Carga de elementos de la escena.
 	reimu = $Reimu 
+	vitalidad_reimu = reimu.vitalidad
 	vitalidad_reimu_txt = $VitalidadReimu
+	vitalidad_reimu_txt.text = str(vitalidad_reimu)
+	
 	grupo_remilias = $GrupoRemilias
 
 	# Señal de muerte del jugador
